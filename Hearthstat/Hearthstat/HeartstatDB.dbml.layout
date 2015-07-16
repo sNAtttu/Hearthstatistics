@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 8.5" name="HeartstatDB">
+  <DataContextMoniker Name="/HeartstatDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="e2c8dd8f-098c-48da-9d53-cd5c193841b8" absoluteBounds="4.75, 4, 2, 3.1170068359375">
+      <DataClassMoniker Name="/HeartstatDBDataContext/AspNetUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="76922509-cabe-4eb7-b07c-2652cab6df18" absoluteBounds="4.7650000000000006, 4.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d25e9eae-6abc-454e-a3bb-72755e795b2e" absoluteBounds="9, 4, 2, 3.1170068359375">
+      <DataClassMoniker Name="/HeartstatDBDataContext/Match" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2829965e-095b-4299-aebd-d3db08a8fd4a" absoluteBounds="9.015, 4.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.75 : 5.55850341796875); (9 : 5.55850341796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/HeartstatDBDataContext/AspNetUser/AspNetUser_Match" />
+      <nodes>
+        <classShapeMoniker Id="e2c8dd8f-098c-48da-9d53-cd5c193841b8" />
+        <classShapeMoniker Id="d25e9eae-6abc-454e-a3bb-72755e795b2e" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

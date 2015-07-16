@@ -16,24 +16,13 @@ namespace Hearthstat.Controllers
         {
             return "Antti";
         }
-        // POST api/Games
-        public string Post([FromBody]dynamic newCard)
+        [Route("Match")]
+        // POST api/Games/Match
+        public string Post()
         {
-            try
-            {
-                CardModel card = new CardModel
-                {
-                    AP = newCard.AP.Value,
-                    HP = newCard.HP.Value,
-                    name = newCard.name.Value
-                };
-                return "New card with name " + card.name + " has been added";
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-        }
 
+
+            return "pippeli";
+        }
     }
 }

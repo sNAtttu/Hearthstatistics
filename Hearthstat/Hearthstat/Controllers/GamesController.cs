@@ -16,13 +16,40 @@ namespace Hearthstat.Controllers
         {
             return "Antti";
         }
-        [Route("Match")]
-        // POST api/Games/Match
-        public string Post()
+
+        [Route("save")]
+        // POST api/Games/save
+        public string PostMatchSave([FromBody] dynamic match)
         {
+            using (var DBContext = new HeartstatDBDataContext())
+            {
+                Match matchToBeSaved = new Match
+                {
+                    User = match.User.Value,
+                    UserClass = match.UserClass.Value,
+                    SubClass = match.SubClass.Value,
+                    OpponentClass = match.OpponentClass.Value,
+                    OpponentSubClass = match.OpponentSubClass.Value,
+                    MatchResult = (bool)match.MatchResult.Value,
+                    PlayerRank = (int)match.PlayerRank.Value,
+                    Season = (int)match.Season.Value,
+                    Created = DateTime.Now,
+                    Comment = match.Comment.Value,
+                    UserId = "112111-11111-1111-1111"
 
+                };
+                DBContext.Matches.InsertOnSubmit(matchToBeSaved);
 
-            return "pippeli";
+                try
+                {
+                    DBContext.SubmitChanges();
+                    return "Game Saved";
+                }
+                catch(Exception ex)
+                {
+                    return ex.Message;
+                }
+            }
         }
     }
 }

@@ -6,13 +6,13 @@ using System.Web;
 
 namespace Hearthstat.Models
 {
-    public class MatchModel
+    public class Match
     {
 
         [JsonProperty("User")]
         public string User { get; set; }
         [JsonProperty("UserClass")]
-        public string SserClass { get; set; }
+        public string UserClass { get; set; }
         [JsonProperty("SubClass")]
         public string SubClass { get; set; }
         [JsonProperty("OpponentClass")]

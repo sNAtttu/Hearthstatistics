@@ -23,9 +23,15 @@ namespace Hearthstat.Controllers
         {
             using (var DBContext = new HeartstatDBDataContext())
             {
+                var User = from u in DBContext.AspNetUsers
+                                  where u.UserName == System.Web.HttpContext.Current.User.Identity.Name
+                                  select u.UserName;
+
+                string username = User.First();
+
                 Match matchToBeSaved = new Match
                 {
-                    User = match.User.Value,
+                    User = username,
                     UserClass = match.UserClass.Value,
                     SubClass = match.SubClass.Value,
                     OpponentClass = match.OpponentClass.Value,

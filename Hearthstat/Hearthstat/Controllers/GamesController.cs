@@ -11,7 +11,7 @@ namespace Hearthstat.Controllers
     [RoutePrefix("api/Games")]
     public class GamesController : ApiController
     {
-        // Get api/Games
+        // Get api/Games lol
         public string Get()
         {
             return "Antti";

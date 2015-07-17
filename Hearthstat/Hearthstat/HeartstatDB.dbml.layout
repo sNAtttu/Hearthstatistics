@@ -14,7 +14,7 @@
         <elementListCompartment Id="2829965e-095b-4299-aebd-d3db08a8fd4a" absoluteBounds="9.015, 4.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.75 : 5.55850341796875); (9 : 5.55850341796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.75 : 5.55850341796875); (9 : 5.55850341796875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/HeartstatDBDataContext/AspNetUser/AspNetUser_Match" />
       <nodes>
         <classShapeMoniker Id="e2c8dd8f-098c-48da-9d53-cd5c193841b8" />

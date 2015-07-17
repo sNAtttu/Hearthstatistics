@@ -1,0 +1,76 @@
+<form class="form-horizontal" ng-submit="submit()">
+<fieldset>
+<!-- Form Name -->
+<legend>Save a game</legend>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="playerClass">Your class</label>
+  <div class="col-md-4">
+  <select class="form-control" id="playerClass" name="playerClass" ng-model="game.playerClass" ng-options="item.class for item in classes | orderBy: '+':true track by item.class" required>
+  <option></option>
+  </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="playerDeckType">Your deck type</label>
+  <div class="col-md-4">
+    <select id="playerDeckType" name="playerDeckType" class="form-control" ng-model="game.playerDeckType">
+       <option ng-repeat="type in game.playerClass.deckTypes">{{type}}</option> --><!-- TODO refactor to directive -->
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="opponentsClass">Opponent's class</label>
+  <div class="col-md-4">
+      <select class="form-control" id="opponentClass" name="opponentClass" ng-model="game.opponentClass" ng-options="item.class for item in classes | orderBy: '+':true track by item.class" required>
+      <option></option>
+  </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="opponentDeckType">Opponent's deck type</label>
+  <div class="col-md-4">
+    <select id="opponentDeckType" name="opponentDeckType" class="form-control" ng-model="game.opponentDeckType">
+      <option ng-repeat="type in game.opponentClass.deckTypes">{{type}}</option>
+    </select>
+  </div>
+</div>
+
+<!-- Multiple Checkboxes -->
+<div class="form-group">
+<div class="col-md-4"></div>
+  <div class="col-md-4">
+  <div class="checkbox">
+    <label for="victory-0">
+      <input type="checkbox" name="victory" id="victory-0" value="1" ng-model="game.victory">
+      Victory
+    </label>
+  </div>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="comment"></label>
+  <div class="col-md-4">                     
+    <textarea ng-model="game.comment" class="form-control" id="comment" name="comment">Comment</textarea>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="submit"></label>
+  <div class="col-md-4">
+    <button id="submit" name="submit" class="btn btn-primary">Save</button>
+  </div>
+</div>
+
+</fieldset>
+</form>

@@ -12,23 +12,37 @@ namespace Hearthstat.Controllers
     public class GamesController : ApiController
     {
         // Get api/Games lol
-        public string Get()
+        public List<Match> Get()
         {
-            return "Antti";
+            using (var dbx = new HeartstatDBDataContext())
+            {
+                dbx.DeferredLoadingEnabled = false;
+
+                var AllPlayed = from p in dbx.Matches
+                                select p;
+
+                List<Match> allPlayed = AllPlayed.ToList();
+
+                return allPlayed;
+            }
         }
 
         [Route("save")]
         // POST api/Games/save
         public string PostMatchSave([FromBody] dynamic match)
         {
+            string username = "Santoro";
             using (var DBContext = new HeartstatDBDataContext())
             {
                 var User = from u in DBContext.AspNetUsers
                                   where u.UserName == System.Web.HttpContext.Current.User.Identity.Name
                                   select u.UserName;
 
-                string username = User.First();
-
+                if (User.FirstOrDefault() != null)
+                {
+                    username = User.FirstOrDefault();
+                }                 
+       
                 Match matchToBeSaved = new Match
                 {
                     User = username,

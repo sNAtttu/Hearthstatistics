@@ -1,0 +1,12 @@
+<ul>
+	<li class="previousGame" ng-repeat="game in previousGames" ng-class="{win: game.victory}">
+		<span class="time">{{game.time}}</span>
+		<span class="classIcon"><class-icon class="{{game.player}}"></class-icon></span>
+		<span class="player">{{game.player}}</span>,
+		 <span class="deckType">{{game.deckType}}</span> VS
+		 <span class="classIcon"><class-icon class="{{game.opponent}}"></class-icon></span>
+		<span class="opponent">{{game.opponent}}</span>,
+		 <span class="opponentDeckType">{{game.opponentDeckType}}</span>
+		 <span class="editPreviousGame"><i title="edit" class="glyphicon glyphicon-cog"></i> <i title="remove" class="glyphicon glyphicon-remove"></i></span>
+	</li>
+</ul>

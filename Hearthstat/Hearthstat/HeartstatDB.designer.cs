@@ -393,7 +393,7 @@ namespace Hearthstat
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_Match", Storage="_Matches", ThisKey="Id,UserName", OtherKey="UserId,User")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_Match", Storage="_Matches", ThisKey="Id", OtherKey="UserId")]
 		public EntitySet<Match> Matches
 		{
 			get
@@ -751,7 +751,7 @@ namespace Hearthstat
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_Match", Storage="_AspNetUser", ThisKey="UserId,User", OtherKey="Id,UserName", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_Match", Storage="_AspNetUser", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
 		public AspNetUser AspNetUser
 		{
 			get
@@ -775,12 +775,10 @@ namespace Hearthstat
 					{
 						value.Matches.Add(this);
 						this._UserId = value.Id;
-						this._User = value.UserName;
 					}
 					else
 					{
 						this._UserId = default(string);
-						this._User = default(string);
 					}
 					this.SendPropertyChanged("AspNetUser");
 				}

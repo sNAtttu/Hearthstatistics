@@ -12,20 +12,53 @@ namespace Hearthstat.Controllers
     public class GamesController : ApiController
     {
         // Get api/Games lol
-        public List<Match> Get()
+        public List<Match> Get(string userClass = "", string opponentClass = "")
         {
+            List<Match> allPlayed = new List<Match>();
+
             using (var dbx = new HeartstatDBDataContext())
             {
                 dbx.DeferredLoadingEnabled = false;
+                
+                if (userClass != "" && opponentClass != "")
+                {
+                    var AllPlayed = from p in dbx.Matches
+                                    where p.OpponentClass == opponentClass && p.UserClass == userClass
+                                    select p;
 
-                var AllPlayed = from p in dbx.Matches
-                                select p;
+                    allPlayed = AllPlayed.ToList();
 
-                List<Match> allPlayed = AllPlayed.ToList();
+                }
+                else if (userClass != "")
+                {
+                    var AllPlayed = from p in dbx.Matches
+                                    where p.UserClass == userClass
+                                    select p;
 
+                    allPlayed = AllPlayed.ToList();
+                }
+                else if(opponentClass != "")
+                {
+                    var AllPlayed = from p in dbx.Matches
+                                    where p.OpponentClass == opponentClass
+                                    select p;
+
+                    allPlayed = AllPlayed.ToList();
+
+                }
+
+                else
+                {
+                    var AllPlayed = from p in dbx.Matches
+                                    select p;
+
+                    allPlayed = AllPlayed.ToList();
+                }
                 return allPlayed;
             }
         }
+
+
 
         [Route("save")]
         // POST api/Games/save

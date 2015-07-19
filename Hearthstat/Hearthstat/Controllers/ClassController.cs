@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hearthstat.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,11 +12,19 @@ namespace Hearthstat.Controllers
     public class ClassController : ApiController
     {
 
-        public void Get()
+        public List<Class> Get()
         {
-            List<string> mainClasses = new List<string>();
-            List<string> subClasses = new List<string>();
+
+            using (var dbx = new HeartstatDBDataContext())
+            {
+                var classes = from c in dbx.Classes
+                              select c;
+
+                List<Class> allClasses = classes.ToList();
+                return allClasses;
+            }
+
         }
-        
+
     }
 }

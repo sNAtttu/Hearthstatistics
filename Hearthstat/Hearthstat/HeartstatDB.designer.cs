@@ -36,6 +36,9 @@ namespace Hearthstat
     partial void InsertMatch(Match instance);
     partial void UpdateMatch(Match instance);
     partial void DeleteMatch(Match instance);
+    partial void InsertClass(Class instance);
+    partial void UpdateClass(Class instance);
+    partial void DeleteClass(Class instance);
     #endregion
 		
 		public HeartstatDBDataContext() : 
@@ -83,6 +86,14 @@ namespace Hearthstat
 				return this.GetTable<Match>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Class> Classes
+		{
+			get
+			{
+				return this.GetTable<Class>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AspNetUsers")]
@@ -114,8 +125,6 @@ namespace Hearthstat
 		private int _AccessFailedCount;
 		
 		private string _UserName;
-		
-		private EntitySet<Match> _Matches;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -149,7 +158,6 @@ namespace Hearthstat
 		
 		public AspNetUser()
 		{
-			this._Matches = new EntitySet<Match>(new Action<Match>(this.attach_Matches), new Action<Match>(this.detach_Matches));
 			OnCreated();
 		}
 		
@@ -393,19 +401,6 @@ namespace Hearthstat
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_Match", Storage="_Matches", ThisKey="Id", OtherKey="UserId")]
-		public EntitySet<Match> Matches
-		{
-			get
-			{
-				return this._Matches;
-			}
-			set
-			{
-				this._Matches.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -424,18 +419,6 @@ namespace Hearthstat
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Matches(Match entity)
-		{
-			this.SendPropertyChanging();
-			entity.AspNetUser = this;
-		}
-		
-		private void detach_Matches(Match entity)
-		{
-			this.SendPropertyChanging();
-			entity.AspNetUser = null;
 		}
 	}
 	
@@ -469,8 +452,6 @@ namespace Hearthstat
 		
 		private string _UserId;
 		
-		private EntityRef<AspNetUser> _AspNetUser;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -503,7 +484,6 @@ namespace Hearthstat
 		
 		public Match()
 		{
-			this._AspNetUser = default(EntityRef<AspNetUser>);
 			OnCreated();
 		}
 		
@@ -738,10 +718,6 @@ namespace Hearthstat
 			{
 				if ((this._UserId != value))
 				{
-					if (this._AspNetUser.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnUserIdChanging(value);
 					this.SendPropertyChanging();
 					this._UserId = value;
@@ -751,36 +727,112 @@ namespace Hearthstat
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_Match", Storage="_AspNetUser", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
-		public AspNetUser AspNetUser
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Classes")]
+	public partial class Class : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _MainClass;
+		
+		private string _SubClass;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnMainClassChanging(string value);
+    partial void OnMainClassChanged();
+    partial void OnSubClassChanging(string value);
+    partial void OnSubClassChanged();
+    #endregion
+		
+		public Class()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
 		{
 			get
 			{
-				return this._AspNetUser.Entity;
+				return this._ID;
 			}
 			set
 			{
-				AspNetUser previousValue = this._AspNetUser.Entity;
-				if (((previousValue != value) 
-							|| (this._AspNetUser.HasLoadedOrAssignedValue == false)))
+				if ((this._ID != value))
 				{
+					this.OnIDChanging(value);
 					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._AspNetUser.Entity = null;
-						previousValue.Matches.Remove(this);
-					}
-					this._AspNetUser.Entity = value;
-					if ((value != null))
-					{
-						value.Matches.Add(this);
-						this._UserId = value.Id;
-					}
-					else
-					{
-						this._UserId = default(string);
-					}
-					this.SendPropertyChanged("AspNetUser");
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainClass", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MainClass
+		{
+			get
+			{
+				return this._MainClass;
+			}
+			set
+			{
+				if ((this._MainClass != value))
+				{
+					this.OnMainClassChanging(value);
+					this.SendPropertyChanging();
+					this._MainClass = value;
+					this.SendPropertyChanged("MainClass");
+					this.OnMainClassChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubClass", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string SubClass
+		{
+			get
+			{
+				return this._SubClass;
+			}
+			set
+			{
+				if ((this._SubClass != value))
+				{
+					this.OnSubClassChanging(value);
+					this.SendPropertyChanging();
+					this._SubClass = value;
+					this.SendPropertyChanged("SubClass");
+					this.OnSubClassChanged();
 				}
 			}
 		}

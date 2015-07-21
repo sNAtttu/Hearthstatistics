@@ -33,12 +33,15 @@ namespace Hearthstat
     partial void InsertAspNetUser(AspNetUser instance);
     partial void UpdateAspNetUser(AspNetUser instance);
     partial void DeleteAspNetUser(AspNetUser instance);
-    partial void InsertMatch(Match instance);
-    partial void UpdateMatch(Match instance);
-    partial void DeleteMatch(Match instance);
     partial void InsertClass(Class instance);
     partial void UpdateClass(Class instance);
     partial void DeleteClass(Class instance);
+    partial void InsertDecktype(Decktype instance);
+    partial void UpdateDecktype(Decktype instance);
+    partial void DeleteDecktype(Decktype instance);
+    partial void InsertMatch(Match instance);
+    partial void UpdateMatch(Match instance);
+    partial void DeleteMatch(Match instance);
     #endregion
 		
 		public HeartstatDBDataContext() : 
@@ -79,19 +82,27 @@ namespace Hearthstat
 			}
 		}
 		
-		public System.Data.Linq.Table<Match> Matches
-		{
-			get
-			{
-				return this.GetTable<Match>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Class> Classes
 		{
 			get
 			{
 				return this.GetTable<Class>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Decktype> Decktypes
+		{
+			get
+			{
+				return this.GetTable<Decktype>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Match> Matches
+		{
+			get
+			{
+				return this.GetTable<Match>();
 			}
 		}
 	}
@@ -422,6 +433,130 @@ namespace Hearthstat
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Classes")]
+	public partial class Class : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _MainClass;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMainClassChanging(string value);
+    partial void OnMainClassChanged();
+    #endregion
+		
+		public Class()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainClass", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MainClass
+		{
+			get
+			{
+				return this._MainClass;
+			}
+			set
+			{
+				if ((this._MainClass != value))
+				{
+					this.OnMainClassChanging(value);
+					this.SendPropertyChanging();
+					this._MainClass = value;
+					this.SendPropertyChanged("MainClass");
+					this.OnMainClassChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Decktype")]
+	public partial class Decktype : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _SubClass;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSubClassChanging(string value);
+    partial void OnSubClassChanged();
+    #endregion
+		
+		public Decktype()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubClass", DbType="NVarChar(255) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string SubClass
+		{
+			get
+			{
+				return this._SubClass;
+			}
+			set
+			{
+				if ((this._SubClass != value))
+				{
+					this.OnSubClassChanging(value);
+					this.SendPropertyChanging();
+					this._SubClass = value;
+					this.SendPropertyChanged("SubClass");
+					this.OnSubClassChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Match")]
 	public partial class Match : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -527,7 +662,7 @@ namespace Hearthstat
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserClass", DbType="NVarChar(20)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserClass", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
 		public string UserClass
 		{
 			get
@@ -547,7 +682,7 @@ namespace Hearthstat
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubClass", DbType="NVarChar(20)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubClass", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
 		public string SubClass
 		{
 			get
@@ -723,116 +858,6 @@ namespace Hearthstat
 					this._UserId = value;
 					this.SendPropertyChanged("UserId");
 					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Classes")]
-	public partial class Class : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _MainClass;
-		
-		private string _SubClass;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnMainClassChanging(string value);
-    partial void OnMainClassChanged();
-    partial void OnSubClassChanging(string value);
-    partial void OnSubClassChanged();
-    #endregion
-		
-		public Class()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainClass", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string MainClass
-		{
-			get
-			{
-				return this._MainClass;
-			}
-			set
-			{
-				if ((this._MainClass != value))
-				{
-					this.OnMainClassChanging(value);
-					this.SendPropertyChanging();
-					this._MainClass = value;
-					this.SendPropertyChanged("MainClass");
-					this.OnMainClassChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubClass", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string SubClass
-		{
-			get
-			{
-				return this._SubClass;
-			}
-			set
-			{
-				if ((this._SubClass != value))
-				{
-					this.OnSubClassChanging(value);
-					this.SendPropertyChanging();
-					this._SubClass = value;
-					this.SendPropertyChanged("SubClass");
-					this.OnSubClassChanged();
 				}
 			}
 		}

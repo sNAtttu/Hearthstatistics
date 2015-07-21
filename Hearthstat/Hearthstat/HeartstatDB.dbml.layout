@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.25" name="HeartstatDB">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 13.75, 9.125" name="HeartstatDB">
   <DataContextMoniker Name="/HeartstatDBDataContext" />
   <nestedChildShapes>
     <classShape Id="e2c8dd8f-098c-48da-9d53-cd5c193841b8" absoluteBounds="4.75, 4, 2, 3.1170068359375">
@@ -8,16 +8,22 @@
         <elementListCompartment Id="76922509-cabe-4eb7-b07c-2652cab6df18" absoluteBounds="4.7650000000000006, 4.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="d35b8278-d568-4385-be52-540e7a36a417" absoluteBounds="8.25, 4, 2, 3.1170068359375">
-      <DataClassMoniker Name="/HeartstatDBDataContext/Match" />
-      <nestedChildShapes>
-        <elementListCompartment Id="8237f7c3-10cc-4fbe-bf01-b25a8a68e593" absoluteBounds="8.265, 4.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="c47018c4-7dd8-4b8b-9dce-b607c142e5c4" absoluteBounds="8.25, 7.625, 2, 1.3862939453125">
+    <classShape Id="68f40a60-aebf-4677-9e4f-83597018af2b" absoluteBounds="8.25, 7.875, 2, 1.0016910807291668">
       <DataClassMoniker Name="/HeartstatDBDataContext/Class" />
       <nestedChildShapes>
-        <elementListCompartment Id="e6e74de6-46ef-4385-a5e1-1f66a71ecd78" absoluteBounds="8.265, 8.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="5db41eab-0079-4bd3-b4e6-5d387f67726d" absoluteBounds="8.265, 8.335, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a5fcb497-068c-4ec5-8e0d-eae3256bd8a6" absoluteBounds="11.5, 7.875, 2, 1.0016910807291668">
+      <DataClassMoniker Name="/HeartstatDBDataContext/Decktype" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6af1141b-11e0-4aa8-a547-170b3ca1bb55" absoluteBounds="11.515, 8.335, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7b5fde8a-f79d-4a2e-936f-b69a978f0b9d" absoluteBounds="8.375, 4, 2, 3.1170068359375">
+      <DataClassMoniker Name="/HeartstatDBDataContext/Match" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0141b9e9-4c67-4409-a8d5-e63888b250bf" absoluteBounds="8.39, 4.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

@@ -12,6 +12,7 @@ http://hearthstatist.azurewebsites.net/api/Class/sub GET
 
 http://hearthstatist.azurewebsites.net/api/Games GET
 - Gets all played matches (TODO: search)
+- Valid parameters userClass & opponentClass
 
 
 

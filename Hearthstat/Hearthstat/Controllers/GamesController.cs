@@ -62,7 +62,7 @@ namespace Hearthstat.Controllers
 
         [Route("save")]
         // POST api/Games/save
-        public string PostMatchSave([FromBody] dynamic match)
+        public string PostMatchSave(Match match)
         {
             string username = "Santoro";
             using (var DBContext = new HeartstatDBDataContext())
@@ -79,15 +79,15 @@ namespace Hearthstat.Controllers
                 Match matchToBeSaved = new Match
                 {
                     User = username,
-                    UserClass = match.UserClass.Value,
-                    SubClass = match.SubClass.Value,
-                    OpponentClass = match.OpponentClass.Value,
-                    OpponentSubClass = match.OpponentSubClass.Value,
-                    MatchResult = (bool)match.MatchResult.Value,
-                    PlayerRank = (int)match.PlayerRank.Value,
-                    Season = (int)match.Season.Value,
+                    UserClass = match.UserClass,
+                    SubClass = match.SubClass,
+                    OpponentClass = match.OpponentClass,
+                    OpponentSubClass = match.OpponentSubClass,
+                    MatchResult = (bool)match.MatchResult,
+                    PlayerRank = (int)match.PlayerRank,
+                    Season = (int)match.Season,
                     Created = DateTime.Now,
-                    Comment = match.Comment.Value,
+                    Comment = match.Comment,
                     UserId = "112111-11111-1111-1111"
 
                 };
